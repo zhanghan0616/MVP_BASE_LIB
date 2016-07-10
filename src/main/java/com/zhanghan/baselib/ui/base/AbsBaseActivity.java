@@ -12,25 +12,31 @@ import org.xutils.x;
 public abstract class AbsBaseActivity extends AppCompatActivity implements BaseView {
 
     //绑定presenter
-    abstract void bindPresenter();
+    public abstract void bindPresenter();
 
     //初始化标题栏
-    abstract void initTitlelBar();
+    public abstract void initTitlelBar();
 
     //初始化view和事件
-    abstract void initViewsAndEvents();
+    public abstract void initViewsAndEvents();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //todo 将此activity加入管理类，统一管理
+        // TODO: 2016/7/9  将此activity加入管理类，统一管理
         BaseAppManager.getInstance().addActivity(this);
-        //todo 注入view
+        // TODO: 2016/7/9  注入view
         x.view().inject(this);
-        //todo 设置沉浸式
+        // TODO: 2016/7/9  设置沉浸式
         setStatusBar();
-        //todo 设置打开activity动画
+        // TODO: 2016/7/9  设置打开activity动画
         setOpenAnim();
+        // TODO: 2016/7/9 设置标题栏
+        initTitlelBar();
+        // TODO: 2016/7/9 初始化部分视图事件
+        initViewsAndEvents();
+        // TODO: 2016/7/9  绑定presenter
+        bindPresenter();
     }
 
     //设置状态栏背景色
